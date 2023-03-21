@@ -1,22 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
+import { INestTodoListlication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { TodoListModule } from '../src/TodoListModule';
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication;
+describe('TodoListController (e2e)', () => {
+  let todoList: INestTodoListlication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [TodoListModule],
     }).compile();
 
-    app = moduleFixture.createNestApplication();
-    await app.init();
+    todoList = moduleFixture.createNestTodoListlication();
+    await todoList.init();
   });
 
   it('/ (GET)', () => {
-    return request(app.getHttpServer())
+    return request(todoList.getHttpServer())
       .get('/')
       .expect(200)
       .expect('Hello World!');
